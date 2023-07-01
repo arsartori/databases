@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.6.14
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: toor
+    volumes:
+      - /opt/docker/mariadb/var/lib/mysql:/var/lib/mysql
