@@ -8,4 +8,6 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: toor
     volumes:
-      - /opt/docker/mariadb/var/lib/mysql:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+      - ./var/lib/mysql:/var/lib/mysql/
+      - ./etc/mysql/conf.d:/etc/mysql/conf.d/
