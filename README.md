@@ -2,4 +2,4 @@
 
 mkdir -p /opt/docker/mariadb/data
 
-docker compose up -d
+docker compose -f /opt/docker/mariadb/docker-compose up -d
