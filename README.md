@@ -30,6 +30,7 @@
 	mysqldump -u root -p > backup.sql
 	mysqldump -u root -p --all-databases --single-transaction --lock-tables=false | gzip > /backup/backup-$(date +%Y%m%d).sql.gz
 	mysqldump -u root -p --single-transaction --add-drop-database --databases <banco> | gzip > /tmp/backup.sql.gz
+	mysqldump -u USERNAME -p --all-databases --events --ignore-table=mysql.event --extended-insert --add-drop-database --disable-keys --flush-privileges --quick --routines --triggers | gzip > "all_databases.gz"
 ### Para fazer restore
 	gunzip < backup.sql.gz | mariadb -u root -p <banco de dados>
 ### Para listar os bancos de dados ou tabelas
