@@ -45,3 +45,25 @@
 	set global max_allowed_packet=1072731894;
 ### Para configurar a segurança do MariaDB
 	mysql_secure_installation;
+
+# Instalar MariaDB 10.6.18 no host
+
+### Instalar pacotes necessários e importar as chaves
+	sudo apt-get install apt-transport-https curl
+	sudo mkdir -p /etc/apt/keyrings
+	sudo curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
+### Criar o arquivo /etc/apt/sources.list.d/mariadb.sources
+	# MariaDB 10.6 repository list - created 2024-07-23 00:15 UTC
+	# https://mariadb.org/download/
+	X-Repolib-Name: MariaDB
+	Types: deb
+	# deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
+	# URIs: https://deb.mariadb.org/10.6/ubuntu
+	URIs: https://mirrors.xtom.com/mariadb/repo/10.6/ubuntu
+	Suites: jammy
+	Components: main main/debug
+	Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
+### Instalar MariaDB
+	sudo apt-get update
+	sudo apt-get install mariadb-server
+
