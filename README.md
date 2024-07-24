@@ -67,3 +67,22 @@
 	sudo apt-get update
 	sudo apt-get install mariadb-server
 
+
+# Fazendo backup dos databases
+### Crie um arquivo de script (/root/scripts/backupdb.sh), com permissão 750, e adicione as seguintes linhas:
+	#!/bin/bash
+
+	BACKUPDIR="/backup/databases/"
+	DATE=`date +%s`
+
+	if [ ! -e $BACKUPDIR ]; then
+		mkdir -p $BACKUPDIR
+		chmod 700 $BACKUPDIR
+	fi
+
+	for x in `mysqlshow | grep -v \_schema | awk -F "| " '{print $2}'`; do mysqldump $x | bzip2 -9czq > $BACKUPDIR$x-sql-$DATE.bz2; done
+
+	/usr/bin/find $BACKUPDIR ! -mtime -3|/usr/bin/xargs rm -f
+	chmod 600 $BACKUPDIR/*
+### Adicione no crontab a seguinte entrada
+	0 */8 * * * /root/scripts/backupdb.sh >/dev/null 2>&1
