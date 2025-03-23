@@ -1,15 +1,5 @@
 # MariaDB
 
-| Versão | Data |
-|--------|------|
-| 10.6.11 | 08/11/2022 |
-| 10.7.8 | 06/02/2023 |
-| 10.8.8 | 10/05/2023 |
-| 10.9.8 | 14/08/2023 |
-| 10.10.7 | 14/11/2023 |
-| 10.11.11 | 05/02/2025 |
-| 11.4.5 | 05/02/2025 |
-
 ### Criar pasta para os bancos de dados e arquivos de configuração
 	mkdir -p /opt/docker/mariadb/{db,conf}
 ### Copia o arquivo "docker-compose.yaml" para a pasta do MariaDB
